@@ -16,7 +16,7 @@
     3) npm install
     4) npm start
     
-## This2. Extra improvements
+## 2. Extra improvements
 
 ###  A) Bonus Driver
     - Users can enter new position of the bonus driver.

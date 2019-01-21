@@ -43,8 +43,8 @@ class LegsDropDown extends Component {
             })
         }
 
-        console.log( 'legsOpt - ', legsOpt)
-        console.log( 'defaultVal - ', defaultVal)
+        //console.log( 'legsOpt - ', legsOpt)
+        //console.log( 'defaultVal - ', defaultVal)
 
         const placeholder = defaultVal.length > 0 ? defaultVal[0] : null
 

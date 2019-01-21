@@ -49,7 +49,7 @@ class Timer extends Component {
                
                     <div>
                         <div className='timerTitle'>
-                            Time left to Stop {endStop}
+                            Arriving at Stop {endStop} in
                         </div>
                         <div className='time'>
                             { !completed ?
@@ -65,7 +65,7 @@ class Timer extends Component {
                             }
                         </div>
                         <div className='timerTitle' style={{marginTop:'10px'}}>
-                            Time left to Final Stop {finalStop}
+                            Arriving at Final Stop {finalStop} in
                         </div>
                         <div className='time'>
                             { !completed ?

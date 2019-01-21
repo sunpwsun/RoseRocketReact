@@ -9,10 +9,9 @@ import XYPosText from '../XYPosText/XYPosText'
 class BonusDriverForm extends Component {
 
     onChange(location) {
-       // console.log('[Bonus] change clicked', location)
 
+        // axios call - PUT bonus driver location
         RoseRocketActions.putBonusDriverLocation( location ).then( ()=> {
-
 
             // should update the bonus driver's location by calling axios
             RoseRocketActions.getBonusDriverLocation()
@@ -39,7 +38,6 @@ export default connect(
     (state) => ({
         running : state.roserocket.running,
         bonusDriverLocation : state.roserocket.bonusDriverLocation
-
     }),
     (dispatch) => ({
         RoseRocketActions: bindActionCreators( roseRocketAction, dispatch)

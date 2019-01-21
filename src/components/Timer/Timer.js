@@ -6,6 +6,10 @@ import { connect } from 'react-redux'
 
 class Timer extends Component {
 
+    /******************************************************************************************* 
+        Shows how long it will take the driver to complete the entire path (all of the legs). 
+        Also, calculate how much time is left for the driver based on their current position 
+    *******************************************************************************************/
 
     toHHMMSS( num ) {
         let hours   = Math.floor(num / 3600);
@@ -38,8 +42,6 @@ class Timer extends Component {
         const idxCurrentLeg = legs.findIndex( leg => leg.legID === driverLocation.activeLegID )     
         const endStop = stops[ idxCurrentLeg + 1 ].name 
         const finalStop = stops[ stops.length - 1 ].name 
-        // const leftTimeToEndStop = new Date( timestamps[ idxCurrentLeg + 1 ] ) - new Date()
-        // const leftTimeToFinalStop = new Date( timestamps[ timestamps.length - 1 ] ) - new Date()
 
         return(
             <div className='timer'>
@@ -79,8 +81,6 @@ class Timer extends Component {
                             }
                         </div>
                     </div>
-           
-                
             </div>
         )
     }

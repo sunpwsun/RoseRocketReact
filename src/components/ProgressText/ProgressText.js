@@ -9,19 +9,14 @@ import './ProgressText.css'
 
 class ProgressText extends Component {
 
-
-    componentWillReceiveProps(nextProps) {
-
-    }
-
+    /***************************
+        Not used.
+        Replaced with slider
+    ***************************/
 
     onChange = (v) => {
-console.log( 'Progress changed - ', v)
         RoseRocketActions.changeDriverProgress( v )
     }   
-
-
-
 
     render() {
 

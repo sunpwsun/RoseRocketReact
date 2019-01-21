@@ -10,7 +10,7 @@ import './LegsDropDown.css'
 class LegsDropDown extends Component {
 
     onChangeLeg = (e) => {
- console.log('[Dropdown changed]', e[0])       
+           
         RoseRocketActions.changeDriverLeg( e[0] )
 
         // changes the deiver's location
@@ -28,7 +28,6 @@ class LegsDropDown extends Component {
         let defaultVal = []
         if( driverLocation ) {
             defaultVal.push( driverLocation.activeLegID )
-console.log( '----', driverLocation.activeLegID , defaultVal)
         }
 
         const legsOpt = []

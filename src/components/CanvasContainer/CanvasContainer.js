@@ -39,12 +39,10 @@ class CanvasContainer extends Component {
                     <Switch checked={showBonusDriver} onChange={this.onChangeBonus} style={{marginLeft:'30px'}} /> Show Bonus Driver
                 </div>
                     {
-                        
                         ( legs.length !== 0 && stops.length!==0 && driverLocation && newDriverLocation) ?     
                             <Canvas className='mapCanvas' />
                         :
                         <div>Loading...</div>
-
                     }
                 </div>
         )

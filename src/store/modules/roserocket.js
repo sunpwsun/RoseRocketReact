@@ -1,6 +1,8 @@
 import { handleActions } from 'redux-actions'
 import * as service from '../../services/axiocall'
 
+
+// defines action types
 const GET_LEGS_PENDING = 'GET_LEGS_PENDING'
 const GET_LEGS_SUCCESS = 'GET_LEGS_SUCCESS'
 const GET_LEGS_FAILURE = 'GET_LEGS_FAILURE'
@@ -32,13 +34,18 @@ const TOGGLE_SHOWBONUS = 'TOGGLE_SHOWBONUS'
 const UPDATE_APP_STOPPED = 'UPDATE_APP_STOPPED'
 const SIMULATION_COMPLETED = 'SIMULATION_COMPLETED'
 
+
+
+
+
+// Action creators
+
 export const simulationCompleted = () => dispatch => {
 
     dispatch( { 
         type : SIMULATION_COMPLETED,
     })
 }
-
 
 
 export const updateAppStopped = () => dispatch => {
@@ -81,17 +88,12 @@ export const changeDriverLeg = ( leg ) => dispatch => {
     })
 }
 
-
-
-
-
 export const getAllLegs = () => dispatch => {
 
 //    dispatch( { type: GET_LEGS_PENDING } )
 
     return service.getAllLegs()
             .then( response => {    
-console.log( 'getAllLegs - ', response.data )
                 dispatch({
                     type: GET_LEGS_SUCCESS,
                     payload: response.data        
@@ -126,7 +128,7 @@ export const getAllStops = () => dispatch => {
 } 
 
 export const getDriverLocation = () => dispatch => {
-console.log('[getDriverLocation]')
+
     dispatch( { type: GET_DRIVERLOCATION_PENDING } )
 
     return service.getDriverLocation()
@@ -249,8 +251,9 @@ const initialState = {
 }
 
 
-export default handleActions({
 
+// Reducers
+export default handleActions({
 
     [SIMULATION_COMPLETED] : (state, action) => {
       
@@ -273,7 +276,7 @@ export default handleActions({
     [TOGGLE_SHOWBONUS] : (state, action) => {
       
         const showBonusDriver = !state.showBonusDriver
-console.log('[TOGGLE_SHOWBONUS]' , showBonusDriver)         
+              
         return {
             ...state,
             showBonusDriver : showBonusDriver
@@ -282,7 +285,7 @@ console.log('[TOGGLE_SHOWBONUS]' , showBonusDriver)
     [TOGGLE_ZOOMIN] :(state, action) => {
       
         const zoomIn = !state.zoomIn
-console.log('[TOGGLE_ZOOMIN]' , zoomIn)         
+              
         return {
             ...state,
             zoomIn : zoomIn
@@ -293,7 +296,7 @@ console.log('[TOGGLE_ZOOMIN]' , zoomIn)
     [TOGGLE_SHOWNAME] :(state, action) => {
       
         const showStopNames = !state.showStopNames
-console.log('[TOGGLE_SHOWNAME]' , showStopNames)         
+          
         return {
             ...state,
             showStopNames : showStopNames
@@ -302,7 +305,7 @@ console.log('[TOGGLE_SHOWNAME]' , showStopNames)
 
 
     [UPDATE_BONUS_X] : (state, action) => {
-        console.log('[UPDATE_BONUS_X]' , action.payload)       
+           
         const newLocation = state.bonusDriverLocation
         newLocation.x = action.payload
         return {
@@ -313,7 +316,7 @@ console.log('[TOGGLE_SHOWNAME]' , showStopNames)
 
 
     [UPDATE_BONUS_Y] : (state, action) => {
-        console.log('[UPDATE_BONUS_Y]' , action.payload)       
+            
         const newLocation = state.bonusDriverLocation
         newLocation.y = action.payload
         return {
@@ -323,8 +326,6 @@ console.log('[TOGGLE_SHOWNAME]' , showStopNames)
     },
 
     [UPDATE_TIMESTAMPS_DRIVERLOCATION] : (state, action) => {
-console.log('[UPDATE_TIMESTAMPS_DRIVERLOCATION]' , action.payload)
-        
 
         return {
             ...state,
@@ -336,7 +337,6 @@ console.log('[UPDATE_TIMESTAMPS_DRIVERLOCATION]' , action.payload)
     },
 
     [CHANGE_DRIVERPROGRESS]: (state, action) => {
-        console.log('[CHANGE_DRIVERPROGRESS]', state.newDriverLocation)
         const newDriverLocation = state.newDriverLocation
         newDriverLocation.legProgress = action.payload
 
@@ -359,10 +359,7 @@ console.log('[UPDATE_TIMESTAMPS_DRIVERLOCATION]' , action.payload)
         }
     },
 
-
-
     [GET_LEGS_SUCCESS] : (state, action) => {
-console.log('[GET_LEGS_SUCCESS]',action.payload)
         return {
             ...state,
             legs : action.payload
@@ -370,7 +367,7 @@ console.log('[GET_LEGS_SUCCESS]',action.payload)
     },
 
     [GET_STOPS_SUCCESS] : (state, action) => {
-        console.log('[GET_LEGET_STOPS_SUCCESSS_SUCCESS]')
+    
         return {
             ...state,
             stops : action.payload
@@ -378,7 +375,7 @@ console.log('[GET_LEGS_SUCCESS]',action.payload)
     },
 
     [GET_DRIVERLOCATION_SUCCESS] : (state, action) => {
-        console.log('[GET_DRIVERLOCATION_SUCCESS]')
+        
         return {
             ...state,
             driverLocation : action.payload,
@@ -387,15 +384,9 @@ console.log('[GET_LEGS_SUCCESS]',action.payload)
     },
 
     [GET_BDRIVERLOCATION_SUCCESS] : (state, action) => {
-        console.log('[GET_BDRIVERLOCATION_SUCCESS]')
         return {
             ...state,
             bonusDriverLocation : action.payload,
         }
     },
-
-
-
-
-
 }, initialState)

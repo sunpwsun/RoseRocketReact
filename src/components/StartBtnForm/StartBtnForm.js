@@ -7,7 +7,6 @@ import './StartBtnForm.css'
 import { subscribeToTimestampsDriverLocation, subscribeToComplete, unsubscribe } from '../../services/socketapi'
 
 
-
 class StartBtnForm extends Component {
 
     handleStartBtn( running ) {
@@ -15,19 +14,20 @@ class StartBtnForm extends Component {
         // starts simulation
         if( !running ) {
             subscribeToTimestampsDriverLocation( (err, timestampsDriverlocation ) => {
-    console.log('[TIMESTAMP] ', timestampsDriverlocation)
+            console.log('[TIMESTAMP] ', timestampsDriverlocation)
                 RoseRocketActions.updateTimestampsDriverLocation( timestampsDriverlocation )
             })
 
+            // Server sends the COMPLETED if the driver arrives at the final
             subscribeToComplete( ()=> {
-      console.log('[COMPOLETED!!!]')    
+                console.log('[COMPOLETED!!!]')    
                 RoseRocketActions.simulationCompleted()
             })
 
         }
         // stops simulation
         else {
-console.log('[!!!!STOP!!!!]')           
+            console.log('[!!!!STOP!!!!]')           
             unsubscribe()
             RoseRocketActions.updateAppStopped()
         }

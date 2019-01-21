@@ -10,7 +10,7 @@ import './ProgressSlider.css'
 class ProgressSlider extends Component {
 
     onChange = (v) => {
-console.log( 'ProgressSlider changed - ', v)
+
         RoseRocketActions.changeDriverProgress( v )
 
         // changes the deiver's location
@@ -20,9 +20,6 @@ console.log( 'ProgressSlider changed - ', v)
             RoseRocketActions.getDriverLocation()
         })
     }   
-
-
-
 
     render() {
 
@@ -36,8 +33,6 @@ console.log( 'ProgressSlider changed - ', v)
               label: <strong>100%</strong>,
             }
         }
-
-
 
         let defaultValue
         if( driverLocation )

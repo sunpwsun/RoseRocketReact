@@ -1,11 +1,9 @@
 import React, { Component } from 'react'
-import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import './Canvas.css'
 
 const OFFSET_X = 50
 const OFFSET_Y = 50
-//const D = 3
 const NUM_X = 200
 const NUM_Y = 200
 
@@ -27,34 +25,6 @@ class Canvas extends Component {
         //this.calcScaleFactor()
         this.drawMap() 
     }
-
-    // calcScaleFactor() {
-
-    //     const { stops, bonusDriverLocation } = this.props
-
-    //     let largeX = bonusDriverLocation.x
-    //     let largeY = bonusDriverLocation.y
-    //     let smallX = bonusDriverLocation.x
-    //     let smallY = bonusDriverLocation.y
-
-    //     // finds smallest and largest posotions
-    //     for( let i = 0 ; i < stops.length ; i++ ) {
-    //         if( stops[ i ].x > largeX )
-    //             largeX = stops[ i ].x
-    //         if( stops[i].x < smallX )
-    //             smallX = stops[ i ].x
-    //         if( stops[ i ].y > largeY )
-    //             largeY = stops[ i ].y
-    //         if( stops[ i ].y < smallY )
-    //             smallY = stops[ i ].y
-    //     }
-
-    //     const dx = largeX - smallX
-    //     const dy = largeY - smallY
-        
-
-    // }
-
 
     drawMap() {
     
@@ -82,6 +52,7 @@ class Canvas extends Component {
         ctx.font = '15px Verdana'
         ctx.textAlign = 'right'
         for( let i = 0 ; i < stops.length ; i++) {
+
             // if the tow stops' positions are same
             if( i === stops.length - 1 && stops[ i ].name !== stops[ 0 ].name) 
                 continue
@@ -93,7 +64,7 @@ class Canvas extends Component {
     calcDriverPosition() {
 
         const { stops, driverLocation } = this.props 
-//console.log('[Driver location]', driverLocation)
+
         // calculates the accurate position 
         const sIdx = stops.findIndex( stop => stop.name === driverLocation.activeLegID.charAt(0))
         const eIdx = stops.findIndex( stop => stop.name === driverLocation.activeLegID.charAt(1))
@@ -160,8 +131,6 @@ class Canvas extends Component {
             }
         }
 
-
-console.log('[closest stop]', stops[closestStopIdx].name)
         // draws the line
         ctx.beginPath()
         ctx.strokeStyle = 'green'
@@ -180,22 +149,15 @@ console.log('[closest stop]', stops[closestStopIdx].name)
             ctx.lineTo( OFFSET_X + stops[ i + 1 ].x * D, OFFSET_Y + stops[ i + 1 ].y * D)
             ctx.stroke();
         }
-
-
     }
 
     drawStops( ctx ) {
         
-        const { legs, stops, driverLocation, bonusDriverLocation } = this.props 
+        const {  stops } = this.props 
         const { D } = this.state
 
         for( let i = 0 ; i < stops.length ; i++ ) {
-            // ctx.beginPath()
-            // ctx.strokeStyle = 'black'
-            // ctx.lineWidth = 2
-            // ctx.setLineDash( [] )
-            // ctx.arc( OFFSET_X + stops[ i ].x * D, OFFSET_Y + stops[ i ].y * D, 5, 0, 2 * Math.PI)
-            // ctx.stroke()  
+
             ctx.strokeStyle = 'black'
             ctx.lineWidth = 2
             ctx.setLineDash( [] )
@@ -211,7 +173,7 @@ console.log('[closest stop]', stops[closestStopIdx].name)
 
     drawLegs( ctx ) {
 
-        const { legs, stops, driverLocation, bonusDriverLocation } = this.props 
+        const { legs, stops, driverLocation } = this.props 
         const { D } = this.state
 
         legs.forEach( leg => {
@@ -394,8 +356,5 @@ export default connect(
         zoomIn : state.roserocket.zoomIn,
         showStopNames : state.roserocket.showStopNames,
         showBonusDriver : state.roserocket.showBonusDriver
-    }),
-    // (dispatch) => ({
-    //     RoseRocketActions: bindActionCreators( roseRocketAction, dispatch)
-    // })
+    })
 )(Canvas);

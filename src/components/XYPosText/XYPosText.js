@@ -9,19 +9,18 @@ import './XYPosText.css'
 
 class XYPosText extends Component {
 
+    /***************************************************************
+            Shows and changes the position of the bonus driver 
+    ****************************************************************/
+
     onChangeX = (x) => {
-        console.log( 'Progress changed - ', x)
         RoseRocketActions.updateBonusLocationX( x )
     }   
 
 
     onChangeY = (y) => {
-console.log( 'Progress changed - ', y)
         RoseRocketActions.updateBonusLocationY( y )
     }   
-
-
-
 
     render() {
 
